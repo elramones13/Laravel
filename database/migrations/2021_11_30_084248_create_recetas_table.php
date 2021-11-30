@@ -12,9 +12,9 @@ class CreateRecetasTable extends Migration
             $table->id();
             $table->string('nombre',20);
             $table->string('descripcion',100);
-            $table->string('precio',10)->unique();
+            $table->string('precio',10);
             $table->string('calorias', 10)->nullable();
-            $table->date_time('f_alta');
+            $table->date('f_alta');
             $table->timestamps();
         });
     }
