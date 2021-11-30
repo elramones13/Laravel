@@ -25,3 +25,19 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('/recetas', RecetaController::class);
+
+Route::get('/recetas/{receta}', [RecetaController::class, 'destroy'])->name(
+    'borrar_cliente'
+);
+
+Route::get('/receta/create', [RecetaController::class, 'create'])->name(
+    'crear_cliente'
+);
+
+Route::post('/receta', [RecetaController::class, 'store'])->name(
+    'guardar_cliente'
+);
+Route::get('/receta/{receta}/edit', [
+    RecetaController::class,
+    'edit',
+])->name('editar_cliente');

@@ -24,9 +24,9 @@ class recetaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'codigo' => 'required|min:3|max:15',
-            'empresa' => 'required|min:10|max:50',
-            'contacto' => 'required',
+            'id' => 'required|min:1|max:15',
+            'nombre' => 'required|min:5|max:50',
+            'descripcion' => 'required',
         ]);
 
         receta::create($request->all());
@@ -34,11 +34,12 @@ class recetaController extends Controller
         /*
         almacenar el nuevo receta
         $receta = new receta();
-        $receta->codigo = $request->codigo;
-        $receta->empresa = $request->empresa;
-        $receta->contacto = $request->contacto;
-        $receta->direccion = $request->direccion;
-        $receta->ciudad = $request->ciudad;
+        $receta->id = $request->id;
+        $receta->nombre = $request->nombre;
+        $receta->descripcion = $request->descripcion;
+        $receta->precio = $request->precio;
+        $receta->calorias = $request->calorias;
+        $receta->f_alta = $request->f_alta;
         $receta->save();
         */
 
@@ -59,9 +60,9 @@ class recetaController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'codigo' => 'required|min:3|max:15',
-            'empresa' => 'required|min:10|max:50',
-            'contacto' => 'required',
+            'id' => 'required|min:1|max:15',
+            'nombre' => 'required|min:1|max:50',
+            'descripcion' => 'required',
         ]);
 
         $receta = receta::find($id);
