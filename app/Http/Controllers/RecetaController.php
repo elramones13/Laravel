@@ -2,84 +2,78 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Receta;
 use Illuminate\Http\Request;
+use App\Models\Receta;
 
-class RecetaController extends Controller
+class recetaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $recetas = Receta::all();
+        $saludo = "<h1 style='color: red;'>Hola desde el controlador</h1>";
+
+        return view('recetas.index', compact('recetas', 'saludo'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        //mostrar el formulario de creación
+        return view('recetas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'codigo' => 'required|min:3|max:15',
+            'empresa' => 'required|min:10|max:50',
+            'contacto' => 'required',
+        ]);
+
+        receta::create($request->all());
+
+        /*
+        almacenar el nuevo receta
+        $receta = new receta();
+        $receta->codigo = $request->codigo;
+        $receta->empresa = $request->empresa;
+        $receta->contacto = $request->contacto;
+        $receta->direccion = $request->direccion;
+        $receta->ciudad = $request->ciudad;
+        $receta->save();
+        */
+
+        return redirect()->route('recetas.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Receta  $receta
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Receta $receta)
+    public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Receta  $receta
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Receta $receta)
+    public function edit($id)
     {
-        //
+        $receta = receta::find($id);
+        return view('recetas.edit', compact('receta'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Receta  $receta
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Receta $receta)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'codigo' => 'required|min:3|max:15',
+            'empresa' => 'required|min:10|max:50',
+            'contacto' => 'required',
+        ]);
+
+        $receta = receta::find($id);
+        $receta->update($request->all());
+
+        return redirect()->route('recetas.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Receta  $receta
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Receta $receta)
+    public function destroy($id)
     {
-        //
+        receta::find($id)->delete();
+        // return redirect('/recetas'); //estas dos instrucciones hacen lo mismo
+        return redirect()->route('recetas.index');
     }
 }

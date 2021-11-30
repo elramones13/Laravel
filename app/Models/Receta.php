@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Receta extends Model
 {
     use HasFactory;
+
+    protected $table = 'recetas'; //la tabla de este modelo ya no es clientes, ahora es clientes2
+    public $timestamps = false; //no se usan los campos created_at y updated_at
+    //protected $fillable = ['codigo', 'empresa', 'contacto', 'direccion', 'ciudad']; //campos que se pueden rellenar
+    protected $guarded = ['id']; //campos que no se pueden rellenar
 }
