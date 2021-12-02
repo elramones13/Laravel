@@ -14,3 +14,4 @@ class Receta extends Model
     //protected $fillable = ['codigo', 'empresa', 'contacto', 'direccion', 'ciudad']; //campos que se pueden rellenar
     protected $guarded = ['id']; //campos que no se pueden rellenar
 }
+

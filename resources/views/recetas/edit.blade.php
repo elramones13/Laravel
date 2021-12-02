@@ -1,15 +1,10 @@
 @extends("layout.app2")
 
-
 @section("contenido")
     <h3>Editar receta </h3>
     <form action="{{url('/recetas/')}}/{{$receta->id}}" method="post">
         @csrf
         @method("PUT")
-        <div class="form-group">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name="id" placeholder="Id" value="{{$receta->id}}">
-        </div>
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$receta->nombre}}">

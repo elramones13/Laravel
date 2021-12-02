@@ -41,3 +41,4 @@ Route::get('/receta/{receta}/edit', [
     RecetaController::class,
     'edit',
 ])->name('editar_cliente');
+

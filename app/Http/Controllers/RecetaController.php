@@ -24,9 +24,11 @@ class recetaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required|min:1|max:15',
             'nombre' => 'required|min:5|max:50',
             'descripcion' => 'required',
+            'precio' => 'required',
+            'calorias' => 'required',
+            'f_alta' => 'required'
         ]);
 
         receta::create($request->all());
@@ -60,7 +62,6 @@ class recetaController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'id' => 'required|min:1|max:15',
             'nombre' => 'required|min:1|max:50',
             'descripcion' => 'required',
         ]);

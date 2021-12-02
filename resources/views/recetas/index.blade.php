@@ -2,13 +2,15 @@
 
 
 @section("contenido")
+<br>
     <style>
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 12px;
-            border-radius: 20px;
-            padding: 50px;
-            margin: 50px;
+        }
+        #titulot{
+            text-align:center;
+            text-decoration:underline;
         }
 
     </style>
@@ -36,11 +38,11 @@ public function data()
 
 </head>
 <body>
-    <h1> Tabla de las recetas</h1>
+    <h1 id="titulot"> Tabla de las recetas</h1>
     @if(count($recetas)>0)
 
         <a href=" {{url('/recetas/create')}}" class="btn btn-primary" padding="10px">Nueva receta</a>
-        <table id="tabla_recetas" class="table table-striped table-bordered">
+        <table id="tabla_recetas" class="table table-striped table-bordered ">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -48,9 +50,9 @@ public function data()
                     <th>Descripcion</th>
                     <th>Precio</th>
                     <th>Calorias</th>
-                    <th>Fecha de alta</th>
-                    <th>Action</th>
-                    <th></th>
+                    <th style="font-size:0.85em">Fecha de alta</th>
+                    <th>Borrar</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,7 +77,7 @@ public function data()
     @else
         <h1>No hay recetas</h1>
     @endif
-
+   
 
 @endsection
 

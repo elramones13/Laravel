@@ -5,7 +5,7 @@
         @csrf
         <div class="form-group">
             <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name="id" placeholder="id">
+            <input type="text" class="form-control" id="id" name="id" placeholder="Id">
         </div>
         <div class="form-group">
             <label for="nombre">Nombre</label>
