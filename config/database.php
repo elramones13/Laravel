@@ -34,7 +34,6 @@ return [
     */
 
     'connections' => [
-        'default' => 'sqlite',
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
@@ -92,18 +91,6 @@ return [
         ],
 
     ],
-
-        ‘neptuno’  => [
-            'driver'     => 'mysql',
-            'host'       => env('DB_HOST', 'educacioncanarias.org'),
-            'database'   => env('DB_DATABASE', 'educaci2_neptuno'),
-            'username'   => env('DB_USERNAME', 'educaci2_neptuno'),
-            'password'   => env('DB_PASSWORD', 'neptuno'),
-            'charset'    => 'utf8',
-            'collation'  => 'utf8_unicode_ci',
-            'prefix'     => '',
-            'strict'     => false,
-            ],
 
     /*
     |--------------------------------------------------------------------------
