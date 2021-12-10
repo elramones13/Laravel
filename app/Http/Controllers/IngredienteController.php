@@ -2,84 +2,67 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingrediente;
 use Illuminate\Http\Request;
+use App\Models\Ingrediente;
 
-class IngredienteController extends Controller
+class ingredienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $id_receta = Receta::inRandomOrder()->first()->id;
+        $ingredientes = Ingrediente::all();
+        $saludo = "<h1 style='color: red;'>Hola desde el controlador</h1>";
+
+        return view('ingredientes.index', compact('ingredientes', 'saludo'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        //mostrar el formulario de creación
+        return view('ingredientes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required',
+            'color' => 'required',
+            'id_receta' => 'required',
+        ]);
+
+        Ingrediente::create($request->all());
+
+
+        return redirect()->route('ingredientes.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ingrediente  $ingrediente
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ingrediente $ingrediente)
+    public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ingrediente  $ingrediente
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ingrediente $ingrediente)
+    public function edit($id)
     {
-        //
+        $ingredientes = Ingrediente::find($id);
+        return view('ingredientes.edit', compact('ingredientes'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ingrediente  $ingrediente
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ingrediente $ingrediente)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required|min:1|max:50',
+            'color' => 'required',
+        ]);
+
+        $ingredientes = Ingrediente::find($id);
+        $ingredientes->update($request->all());
+
+        return redirect()->route('ingredientes.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ingrediente  $ingrediente
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ingrediente $ingrediente)
+    public function destroy($id)
     {
-        //
+        ingrediente::find($id)->delete();
+        // return redirect('/ingredientes'); //estas dos instrucciones hacen lo mismo
+        return redirect()->route('ingredientes.index');
     }
 }

@@ -16,7 +16,7 @@ class IngredienteFactory extends Factory
         return [
             'nombre'        => $this->faker->jobTitle(),
             'color'         => $this->faker->colorName(),
-            'id_receta'     => Receta::inRandomOrder()->first()->id,
+            'id_receta'     => Receta::all()->random()->id,
         ];
     }
 }

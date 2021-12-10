@@ -12,6 +12,10 @@
                     Es un libro de recetas para cocinar bien
                 </p>
                 <a class="btn btn-success" href="{{ route('recetas.index') }}">Recetas</a>
+                <p class="max-w-md mx-auto mt-3 text-xl leading-7 text-gray-500 dark:text-gray-400">
+                    Es un libro de recetas para cocinar bien
+                </p>
+                <a class="btn btn-success" href="{{ route('ingredientes.index') }}">Ingredientes</a>
             </div>
         </div>
     </div>
