@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 
     
     <style>
@@ -32,7 +33,15 @@
         tbody{
            background-color: turquoise; 
         }
-
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
+            color:white;
+        }
+        .dataTables_wrapper .dataTables_length select{
+            background-color:white;
+        }
+        .dataTables_wrapper .dataTables_filter input{
+            background-color:white;
+        }
         </style>
     
 

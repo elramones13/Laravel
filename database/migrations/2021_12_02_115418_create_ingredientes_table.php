@@ -19,6 +19,7 @@ class CreateIngredientesTable extends Migration
             $table->string('color');
             $table->integer('id_receta')->unsigned();
             $table->foreign('id_receta')->references('id')->on('recetas')->onDelete("cascade");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

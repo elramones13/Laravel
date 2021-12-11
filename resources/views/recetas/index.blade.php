@@ -17,22 +17,14 @@
 
 <script>
     $(document).ready(function() {
-        $('#tabla_recetas').DataTable();
+        $('#tabla_recetas').DataTable({
+        "order":[[1,'asc']],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        } );
     } );
 </script>
-<script>
-public function data()
-{
-    $customers = Customer::all();
-    return datatables()->of($customers)
-        ->addColumn('action', function ($row) {
-            $html = '<a href="#" class="btn btn-xs btn-secondary">Edit</a> ';
-            $html .= '<button data-rowid="'.$row->id.'" class="btn btn-xs btn-danger">Del</button>';
-            return $html;
-        })->toJson();
-}
-</script>
-
 
 
 
@@ -40,7 +32,6 @@ public function data()
 <body>
     <h1 id="titulot"> Tabla de las recetas</h1>
     @if(count($recetas)>0)
-
         <a href=" {{url('/recetas/create')}}" class="btn btn-primary" padding="10px">Nueva receta</a>
         <table id="tabla_recetas" class="table table-striped table-bordered ">
             <thead>
@@ -50,7 +41,7 @@ public function data()
                     <th>Descripcion</th>
                     <th>Precio</th>
                     <th>Calorias</th>
-                    <th style="font-size:0.85em">Fecha de alta</th>
+                    <th>Fecha de alta</th>
                     <th>Borrar</th>
                     <th>Editar</th>
                 </tr>

@@ -15,6 +15,7 @@ class CreateRecetasTable extends Migration
             $table->string('precio',10);
             $table->string('calorias', 10)->nullable();
             $table->date('f_alta');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
