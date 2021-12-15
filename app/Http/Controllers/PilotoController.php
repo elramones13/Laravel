@@ -62,7 +62,6 @@ class PilotoController extends Controller
     public function destroy($id)
     {
         $piloto = Piloto::find($id)->delete();
-        return redirect()->route('pilotos.index');
     }
 }
 
