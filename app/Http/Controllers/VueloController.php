@@ -59,9 +59,9 @@ class VueloController extends Controller
         return redirect()->route('vuelos.index');
     }
 
-    public function destroy($id)
+    public function destroy(Vuelo $vuelo)
     {
-        $vuelo = Vuelo::find($id)->delete();
+        Vuelo::find($vuelo->id)->delete();
         return redirect()->route('vuelos.index');
     }
 
