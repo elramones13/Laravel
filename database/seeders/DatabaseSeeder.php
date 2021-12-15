@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Piloto;
+use App\Models\Vuelo;
+use App\Models\Pasaje;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Piloto::factory()->count(25)->create();
+        Vuelo::factory()->count(100)->create();
+        Pasaje::factory()->count(1000)->create();
     }
 }
