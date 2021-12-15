@@ -21,11 +21,9 @@
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
             }
         });
-
         $(".borrar").click(function(){
             const tr=$(this).closest("tr"); //guardamos el tr completo
             const id=tr.data("id");
-
             Swal.fire({
                 title: '¿Quieres borrarlo?',
                 showCancelButton: true,
@@ -51,15 +49,12 @@
 
 
         });
-
     });
     </script>
 
-
-
 </head>
 <body>
-    <h1 id="titulot"> Tabla de las vuelos</h1>
+    <h1 id="titulot"> Tabla de Vuelos</h1>
     @if(count($vuelos))
         <a href=" {{url('/vuelos/create')}}" class="btn btn-primary" padding="10px">Nuevo vuelo</a>
         <table id="tabla_vuelos" class="table table-striped table-bordered ">
@@ -79,7 +74,7 @@
             </thead>
             <tbody>
                 @foreach($vuelos as $vuelo)
-                    <tr>
+                    <tr data-id="{{$vuelo->id}}">
                         <td>{{$vuelo->id}}</td>
                         <td>{{$vuelo->codigo}}</td>
                         <td>{{$vuelo->origen}}</td>
@@ -87,7 +82,6 @@
                         <td>{{$vuelo->fecha}}</td>
                         <td>{{$vuelo->hora}}</td>
                         <td>{{$vuelo->piloto_id}}</td>
-                        
                         <td><a href="#" class='btn btn-danger borrar'>Borrar</a></td>
                         <td><a href="{{url('/vuelos')}}/{{$vuelo->id}}/edit"><img width="32px" src="https://img.icons8.com/cotton/2x/000000/edit.png"></a></td>
                     </tr>

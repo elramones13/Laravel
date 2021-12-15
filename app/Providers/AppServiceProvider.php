@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Providers;
-use URL;
 use Illuminate\Support\ServiceProvider;
+use URL;
 
 class AppServiceProvider extends ServiceProvider
 {

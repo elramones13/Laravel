@@ -13,9 +13,11 @@ class AddVuelos extends Migration
      */
     public function up()
     {
-        $table->datetime(created_at)->nullable();
-        $table->datetime(update_at)->nullable();
-        $table->datetime(delete_at)->nullable();
+        Schema::table('vuelos', function (Blueprint $table) {
+            $table->datetime(created_at)->nullable();
+            $table->datetime(update_at)->nullable();
+            $table->datetime(delete_at)->nullable();
+        });
         
     }
 

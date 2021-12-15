@@ -14,8 +14,7 @@ use App\Http\Controllers\PilotoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Http\Controllers\RecetaController;
-use App\Http\Controllers\IngredienteController;
+
 
 
 Route::get('/', function () {
@@ -24,3 +23,5 @@ Route::get('/', function () {
 
 Route::resource('/vuelos', VueloController::class);
 Route::resource('/pilotos', PilotoController::class);
+Route::resource('/pasajes', PasajeController::class);
+

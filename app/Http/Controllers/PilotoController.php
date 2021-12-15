@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Piloto;
+use App\Models\Vuelo;
 use Illuminate\Http\Request;
 
 class PilotoController extends Controller
@@ -21,13 +22,12 @@ class PilotoController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required',
-            'codigo' => 'required',
-            'origen' => 'required|different:destino',
-            'destino' => 'required|different:origen',
-            'fecha' => 'required|date|after:today',
-            'hora' => 'required',
-            'piloto_id' => 'required'
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'f_nacimiento' => 'required',
+            'email' => 'required|email',
+            'dni' => 'required',
+            'telefono' => 'required'
         ]);
 
         Piloto::create($request->all());
@@ -37,31 +37,29 @@ class PilotoController extends Controller
 
     public function edit($id)
     {
-        $piloto = Piloto::find($id);
-        return view('pilotos.edit', compact('piloto'));
+        $pilotos = Piloto::find($id);
+        return view('pilotos.edit', compact('pilotos'));
     }
 
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'id' => 'required',
-            'codigo' => 'required',
-            'origen' => 'required|different:destino',
-            'destino' => 'required|different:origen',
-            'fecha' => 'required|date|after:today',
-            'hora' => 'required',
-            'piloto_id' => 'required'
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'f_nacimiento' => 'required',
+            'email' => 'required|email',
+            'dni' => 'required',
+            'telefono' => 'required'
         ]);
 
-        $piloto = Piloto::find($id);
-        $piloto->update($request->all());
+        $pilotos = Piloto::find($id);
+        $pilotos->update($request->all());
 
         return redirect()->route('pilotos.index');
     }
 
     public function destroy($id)
     {
-        $piloto = Piloto::find($id)->delete();
+        $pilotos = Piloto::find($id)->delete();
     }
 }
-

@@ -37,7 +37,7 @@ class VueloController extends Controller
 
     public function edit($id)
     {
-        $vuelo = Vuelo::find($id);
+        $vuelos = Vuelo::find($id);
         return view('vuelos.edit', compact('vuelo'));
     }
 
@@ -53,15 +53,15 @@ class VueloController extends Controller
             'piloto_id' => 'required'
         ]);
 
-        $vuelo = Vuelo::find($id);
-        $vuelo->update($request->all());
+        $vuelos = Vuelo::find($id);
+        $vuelos->update($request->all());
 
         return redirect()->route('vuelos.index');
     }
 
-    public function destroy(Vuelo $vuelo)
+    public function destroy($id)
     {
-        Vuelo::find($vuelo->id)->delete();
+        $vuelos = Vuelo::find($id)->delete();
         return redirect()->route('vuelos.index');
     }
 

@@ -12,5 +12,6 @@ class Pasaje extends Model
     public $timestamps = false; //no se usan los campos created_at y updated_at
     protected $guarded = ['id']; //campos que no se pueden rellenar
     protected $dates = ['deleted_at'];
-    protected $hidden = ['created_at', 'updated_at'];
+
+    
 }

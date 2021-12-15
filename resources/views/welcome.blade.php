@@ -12,7 +12,9 @@
                     Lista de vuelos en España
                 </p>
                 <a class="btn btn-success" href="{{ route('vuelos.index') }}">Vuelos</a>
-                <a class="btn btn-success" href="{{ route('pilotos.index') }}">Pilotos</a>
+                <a class="btn btn-primary" href="{{ route('pilotos.index') }}">Pilotos</a>
+
+
             </div>
         </div>
     </div>

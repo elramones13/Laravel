@@ -17,7 +17,7 @@
 <script>
     $(document).ready(function() {
         $('#tabla_pilotos').DataTable( {
-            "order":[[1,'asc']],
+            "order":[[4,'desc']],
             "paging": false,
             "search": false,
             "language": {
@@ -37,7 +37,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         method: "POST",
-                        url   : "{{url('/pilotos')}}/"+id,
+                        url   : "{{url('/vuelos')}}/"+id,
                         data  : {
                             _token: "{{csrf_token()}}",
                             _method: "delete",
@@ -60,20 +60,19 @@
 <body>
     <h1 id="titulot"> Tabla de Pilotos</h1>
     @if(count($pilotos)>0)
-        <a href=" {{url('/pilotos/create')}}" class="btn btn-primary" padding="10px">Nuevo piloto</a>
         <table id="tabla_pilotos" class="table table-striped table-bordered ">
             <thead>
                 <tr>
-                    <th data-orderable="false">Id</th>
+                    <th>Id</th>
                     <th>Nombre</th>
                     <th>Apellidos</th>
-                    <th data-orderable="false">Fecha Nacimiento</th>
-                    <th data-orderable="false">Email</th>
-                    <th data-orderable="false">DNI</th>
-                    <th data-orderable="false">Teléfono</th>
-                    <th data-orderable="false">Número de vuelos</th>
-                    <th data-orderable="false">Borrar</th>
-                    <th data-orderable="false">Editar</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Email</th>
+                    <th>DNI</th>
+                    <th>Teléfono</th>
+                    <th>Número de vuelos</th>
+                    <th data_orderable="false">Borrar</th>
+                    <th data_orderable="false">Editar</th>
 
                 </tr>
             </thead>
@@ -87,7 +86,7 @@
                         <td>{{$piloto->email}}</td>
                         <td>{{$piloto->dni}}</td>
                         <td>{{$piloto->telefono}}</td>
-                        <td><a href="{{url('/pilotos')}}/{{$piloto->id}}/edit" class="btn"> {{$piloto->vuelos->count()}}</a></td>
+                        <td><a href="{{url('/pilotos')}}/{{$piloto->id}}/vuelos" class="btn"> {{$piloto->vuelos->count()}}</a></td>
                         
                         <td><a href="#" class='btn btn-danger borrar'>Borrar</a></td>
                         <td><a href="{{url('/pilotos')}}/{{$piloto->id}}/edit"><img width="32px" src="https://img.icons8.com/cotton/2x/000000/edit.png"></a></td>

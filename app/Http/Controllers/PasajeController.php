@@ -7,79 +7,57 @@ use Illuminate\Http\Request;
 
 class PasajeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $pasajes = Pasaje::all();
+        return view('pasajes.index', compact('pasajes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('pasajes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'id' => 'required',
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'vuelo_id' => 'required',
+            'precio' => 'required',
+        ]);
+
+        Pasajecreate($request->all());
+
+        return redirect()->route('pasajes.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pasaje  $pasaje
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pasaje $pasaje)
+    public function edit($id)
     {
-        //
+        $pasajes = Pasaje::find($id);
+        return view('pasajes.vuelos', compact('pasajes'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pasaje  $pasaje
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pasaje $pasaje)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'id' => 'required',
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'vuelo_id' => 'required',
+            'precio' => 'required',
+
+        ]);
+
+        $pasajes = Pasaje::find($id);
+        $pasajes->update($request->all());
+
+        return redirect()->route('pasajes.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pasaje  $pasaje
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pasaje $pasaje)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pasaje  $pasaje
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pasaje $pasaje)
-    {
-        //
+        $pasajes = Pasaje::find($id)->delete();
     }
 }
